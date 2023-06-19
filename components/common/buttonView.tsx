@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Button = styled.button`
+export const Button = styled.button`
 	margin-top: 3.7rem;
 	border: none;
 	width: 100%;
@@ -14,9 +14,10 @@ const Button = styled.button`
 `;
 
 interface PropsType {
-	onSubmitHandler: (e: React.FormEvent) => void;
+	onClickHandler?: () => void;
+	buttonMessage: string;
 }
 
-export default function AuthButtonView(props: PropsType) {
-	return <Button>제출하기</Button>;
+export default function ButtonView(props: PropsType) {
+	return <Button onClick={props.onClickHandler}>{props.buttonMessage}</Button>;
 }

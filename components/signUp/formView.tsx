@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import AuthButtonView from "../common/authButtonView";
+import ButtonView from "../common/buttonView";
 import AuthInputView from "../common/authInputView";
 import { SignUpFormPropsType } from "./signUp";
 const ErrorMessage = styled.p`
@@ -18,7 +18,7 @@ export default function FormView(props: SignUpFormPropsType) {
 			<AuthInputView {...props.password} />
 			<AuthInputView {...props.passwordCheck} />
 			{props.isError ? <ErrorMessage>{props.errorMessage}</ErrorMessage> : null}
-			<AuthButtonView onSubmitHandler={props.onSubmitHandler} />
+			<ButtonView buttonMessage={props.buttonMessage} />
 		</form>
 	);
 }

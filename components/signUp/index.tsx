@@ -75,6 +75,7 @@ export default function SignUpComponents() {
 		onSubmitHandler: onSubmitHandler,
 		isError,
 		errorMessage,
+		buttonMessage: "회원가입",
 	};
 	return (
 		<>

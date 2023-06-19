@@ -26,4 +26,5 @@ export interface SignUpFormPropsType {
 	onSubmitHandler: (e: React.FormEvent) => void;
 	isError: boolean;
 	errorMessage: string;
+	buttonMessage: string;
 }
