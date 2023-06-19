@@ -1,3 +1,4 @@
+import React, { ChangeEvent, useEffect } from "react";
 import styled from "styled-components";
 
 const InputOuter = styled.div`
@@ -24,12 +25,19 @@ const Input = styled.input`
 interface PropsType {
 	id: string;
 	label: string;
+	type?: string;
+	onChangeHandler: (e: ChangeEvent<HTMLInputElement>) => void;
 }
-export default function AuthInputView({ id, label }: PropsType) {
+export default function AuthInputView({
+	id,
+	label,
+	type,
+	onChangeHandler,
+}: PropsType) {
 	return (
 		<InputOuter>
 			<Label htmlFor={id}>{label}</Label>
-			<Input id={id} />
+			<Input id={id} onChange={onChangeHandler} type={type} required />
 		</InputOuter>
 	);
 }

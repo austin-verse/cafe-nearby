@@ -1,4 +1,5 @@
 import { connectToDatabase } from "@/lib/db";
+import { hashPassword } from "@/lib/password";
 import { NextApiRequest, NextApiResponse } from "next";
 interface Data {}
 
@@ -16,13 +17,6 @@ export default async function handler(
 	if (req.method !== "POST") {
 		return;
 	}
-
-	const test: UserDataType = {
-		id: "aaaa",
-		nickName: "vbbb",
-		password: "vbbb",
-		passwordCheck: "vb",
-	};
 
 	const data: UserDataType = req.body;
 	const { id, nickName, password, passwordCheck } = data;
@@ -61,10 +55,10 @@ export default async function handler(
 
 	// connect to db
 	const client = await connectToDatabase();
-	const db = client.db();
+	const db = client.db("cafe_nearby");
 
 	// connect to collection and find duplicated user
-	const existingUser = await db.collection("users").findOne({ id: id });
+	const existingUser = await db.collection("users").findOne({ user_id: id });
 	if (existingUser) {
 		res.status(422).json({ message: "이미 해당 ID의 사용자가 존재합니다." });
 		client.close();
@@ -72,4 +66,17 @@ export default async function handler(
 	}
 
 	// pw hashing 단계 ~
+	const hashedPassword = await hashPassword(password);
+	const result = await db.collection("users").insertOne({
+		user_id: id,
+		nickName,
+		hashedPassword,
+	});
+	res.status(201).json({
+		message: "사용자 추가 완료",
+		user_id: id,
+		nickName,
+		hashedPassword,
+	});
+	client.close();
 }

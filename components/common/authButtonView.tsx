@@ -13,6 +13,10 @@ const Button = styled.button`
 	background-color: #353535;
 `;
 
-export default function AuthButtonView() {
+interface PropsType {
+	onSubmitHandler: (e: React.FormEvent) => void;
+}
+
+export default function AuthButtonView(props: PropsType) {
 	return <Button>제출하기</Button>;
 }
