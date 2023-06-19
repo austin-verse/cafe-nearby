@@ -5,14 +5,17 @@ import { ThemeProvider } from "styled-components";
 import "@/public/static/fonts/font.css";
 import Layout from "@/components/layout/layout";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { SessionProvider } from "next-auth/react";
 
 export default function App({ Component, pageProps }: AppProps) {
 	return (
 		<ThemeProvider theme={defaultTheme}>
-			<Layout>
-				<GlobalStyles />
-				<Component {...pageProps} />
-			</Layout>
+			<SessionProvider sesion={pageProps.session}>
+				<Layout>
+					<GlobalStyles />
+					<Component {...pageProps} />
+				</Layout>
+			</SessionProvider>
 		</ThemeProvider>
 	);
 }
