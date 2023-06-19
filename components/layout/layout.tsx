@@ -11,7 +11,7 @@ const Outer = styled.div`
 	background-color: #242424;
 
 	width: 100vw;
-	max-width: 46rem;
+	max-width: 42rem;
 
 	margin: auto;
 	display: flex;
@@ -22,6 +22,7 @@ const Outer = styled.div`
 
 const Inner = styled.div`
 	width: 90%;
+	max-width: 42rem;
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;

@@ -18,25 +18,49 @@ const ItemText = styled.p`
 `;
 
 interface PropsType {
+	isSessionValid: boolean;
 	toHomeHandler: () => void;
+	toDashboardHandler: () => void;
+	logInOnClickHandler: () => void;
+	logOutOnClickHandler: () => void;
 }
 
-export default function NavBarView({ toHomeHandler }: PropsType) {
+export default function NavBarView({
+	isSessionValid,
+	toHomeHandler,
+	toDashboardHandler,
+	logInOnClickHandler,
+	logOutOnClickHandler,
+}: PropsType) {
 	return (
-		<Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-			<Container fluid>
-				<Navbar.Brand onClick={toHomeHandler}>
+		<Navbar
+			collapseOnSelect
+			expand=""
+			bg="dark"
+			variant="dark"
+			style={{ maxWidth: 989 }}
+		>
+			<Container fluid style={{ backgroundColor: "#242424" }}>
+				<Navbar.Brand onClick={toHomeHandler} style={{ cursor: "pointer" }}>
 					<Title>Cafe Nearby</Title>
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="navbarScroll" />
 				<Navbar.Collapse id="navbarScroll">
 					<Nav className="me-auto my-2 my-lg-0" navbarScroll>
 						<Nav.Link href="/">
-							<ItemText>Home</ItemText>
+							<ItemText>홈</ItemText>
+						</Nav.Link>
+						<Nav.Link href="/dashboard">
+							<ItemText>내 주변 카페</ItemText>
 						</Nav.Link>
 						<Nav.Link href="/profile">
-							<ItemText>Profile</ItemText>
+							<ItemText>프로필</ItemText>
 						</Nav.Link>
+						{isSessionValid ? (
+							<ItemText onClick={logOutOnClickHandler}>로그아웃</ItemText>
+						) : (
+							<ItemText onClick={logInOnClickHandler}>로그인</ItemText>
+						)}
 					</Nav>
 				</Navbar.Collapse>
 			</Container>

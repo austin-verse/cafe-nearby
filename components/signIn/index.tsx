@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import HeaderView from "../common/headerView";
 import { SignInFormPropsType } from "./signIn";
 import FormView from "./formView";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 export default function SignInComponents() {
+	const router = useRouter();
 	const [id, setId] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
 	const idOnChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -13,6 +15,14 @@ export default function SignInComponents() {
 	const passwordOnChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setPassword(e.target.value);
 	};
+
+	const { data: session, status } = useSession();
+	useEffect(() => {
+		if (session) {
+			router.push("/dashboard");
+		}
+	}, [session]);
+
 	const HeaderViewProps = {
 		h2: "로그인",
 		h1: "로그인하여 시작해보세요.",

@@ -10,7 +10,7 @@ import { SessionProvider } from "next-auth/react";
 export default function App({ Component, pageProps }: AppProps) {
 	return (
 		<ThemeProvider theme={defaultTheme}>
-			<SessionProvider sesion={pageProps.session}>
+			<SessionProvider session={pageProps.session}>
 				<Layout>
 					<GlobalStyles />
 					<Component {...pageProps} />
