@@ -1,12 +1,9 @@
+import DashboardComponents from "@/components/dashboard";
 import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/react";
 
 export default function DashboardPage() {
-	return (
-		<div>
-			<p>sss</p>
-		</div>
-	);
+	return <DashboardComponents />;
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {

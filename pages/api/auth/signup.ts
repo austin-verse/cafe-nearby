@@ -77,6 +77,7 @@ export default async function handler(
 		user_id: id,
 		nickName,
 		hashedPassword,
+		favoriteCafe: [],
 	});
 	client.close();
 }
