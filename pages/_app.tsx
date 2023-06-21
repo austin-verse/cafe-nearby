@@ -7,13 +7,10 @@ import Layout from "@/components/layout/layout";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { SessionProvider } from "next-auth/react";
 
-export default function App({
-	Component,
-	pageProps: { session, ...pageProps },
-}: AppProps) {
+export default function App({ Component, pageProps }: AppProps) {
 	return (
 		<ThemeProvider theme={defaultTheme}>
-			<SessionProvider session={session}>
+			<SessionProvider session={pageProps.session}>
 				<Layout>
 					<GlobalStyles />
 					<Component {...pageProps} />

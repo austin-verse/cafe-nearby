@@ -30,7 +30,6 @@ export const authOptions = {
 				const returnedObject = {
 					user_id: user.user_id,
 					nickName: user.nickName,
-					age: "20",
 				};
 				return returnedObject;
 			},
