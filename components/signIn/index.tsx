@@ -32,9 +32,10 @@ export default function SignInComponents() {
 		e.preventDefault();
 		const result = await signIn("credentials", {
 			redirect: false,
-			id: id,
+			user_id: id,
 			password: password,
 		});
+		console.log("result : ");
 		console.log(result);
 	};
 

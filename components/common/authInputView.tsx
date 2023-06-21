@@ -37,7 +37,12 @@ export default function AuthInputView({
 	return (
 		<InputOuter>
 			<Label htmlFor={id}>{label}</Label>
-			<Input id={id} onChange={onChangeHandler} type={type} required />
+			<Input
+				id={id}
+				onChange={onChangeHandler}
+				type={type === "password" ? "password" : "text"}
+				required
+			/>
 		</InputOuter>
 	);
 }
